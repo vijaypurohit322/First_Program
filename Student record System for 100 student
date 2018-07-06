@@ -1,0 +1,208 @@
+#include<stdio.h>
+#include<string.h>
+void addStudent();
+void editStudent();
+void deleteStudent();
+void searchStudent();
+void displayListOfStudent();
+void Exit();
+int rollnumber[100];
+int numberOfRecords;
+char name[100][21];
+
+int main()
+{
+numberOfRecords=0;
+int ch;
+int e,z;
+z=0;
+while(z==0)
+{
+printf("1. Add Student\n");
+printf("2. Edit Student\n");
+printf("3. Delete Student\n");
+printf("4. Search Student\n");
+printf("5. Display list of Student\n");
+printf("6. Exit\n");
+printf("Enter your choice :");
+scanf("%d",&ch);
+fflush(stdin);
+if(ch==1 && numberOfRecords<100)
+{
+addStudent();
+}
+if(numberOfRecords>0)
+{
+if(ch==2)
+{
+editStudent();
+}
+if(ch==3)
+{
+deleteStudent();
+}
+if(ch==4)
+{
+searchStudent();
+}
+if(ch==5)
+{
+displayListOfStudent();
+}
+}
+if(ch==6)
+{
+break;
+}
+}
+return 0;
+}
+
+void addStudent()
+{
+int k,e;
+printf("Enter roll number :");
+scanf("%d",&k);
+fflush(stdin);
+if(k<=0)
+{
+printf("\nInvalid Input !!! Please Try Again\n");
+return;
+}
+e=0;
+while(e<numberOfRecords)
+{
+if(rollnumber[e]==k)
+{
+printf(" \nThe roll Number alloted to %s\n",name[e]);
+return;
+}
+e++;
+}
+rollnumber[numberOfRecords]=k;
+printf("Enter Name : ");
+gets(name[numberOfRecords]);
+fflush(stdin);
+numberOfRecords++;
+printf("Student added\n");
+
+}
+void editStudent()
+{
+int k,e;
+printf("Enter roll number to Edit : ");
+scanf("%d",&k);
+fflush(stdin);
+if(k<=0)
+{
+printf("Invalid Roll number\n");
+return;
+}
+e=0;
+while(e<numberOfRecords)
+{
+if(k==rollnumber[e])
+{
+break;
+}
+e++;
+}
+if(e==numberOfRecords)
+{
+printf("Invalid roll number\n");
+return;
+}
+printf("name %s\n",name[e]);
+printf("Enter New name :");
+gets(name[e]);
+fflush(stdin);
+
+printf("\nStudent Updated Successfully\n");
+}
+void deleteStudent()
+{
+int k,e;
+char m;
+printf("Enter roll number to delete : ");
+scanf("%d",&k);
+fflush(stdin);
+if(k<=0)
+{
+printf("Invlaid roll number\n");
+return;
+}
+e=0;
+while(e<numberOfRecords)
+{
+if(k==rollnumber[e])
+{
+break;
+}
+e++;
+}
+if(e==numberOfRecords)
+{
+printf("invalid Roll number\n");
+return;
+}
+printf("name %s\n",name[e]);
+printf(" Delete(Y/N)");
+scanf("%c",&m);
+fflush(stdin);
+if(m!='y' && m!='Y')
+{
+printf("Student not deleted\n");
+return;
+}
+while(e<=numberOfRecords-2)
+{
+rollnumber[e]=rollnumber[e+1];
+strcpy(name[e],name[e+1]);
+e++;
+}
+numberOfRecords--;
+printf("Student deleted\n");
+}
+void searchStudent()
+{
+int k,e;
+printf("Enter roll number : ");
+scanf("%d",&k);
+fflush(stdin);
+if(k<=0)
+{
+printf("Invalid Roll number\n");
+return;
+}
+e=0;
+while(e<numberOfRecords)
+{
+if(k==rollnumber[e])
+{
+break;
+}
+e++;
+}
+if(e==numberOfRecords)
+{
+printf("Invalid roll number\n");
+return;
+}
+printf("name %s\n",name[e]);
+
+return;
+}
+void displayListOfStudent()
+{
+int f;
+f=0;
+while(f<numberOfRecords)
+{
+printf("Rollnumber %d, Name %s\n",rollnumber[f],name[f]);
+f++;
+}
+}
+void Exit()
+{
+return;
+}
