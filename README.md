@@ -1,2 +1,3 @@
-# Vijay-Purohit
-I am a Student of B.E. and I like to dive in Coding Problems. 
+# Introduction
+Getting Started with github.
+This is my first program on github, I want to understand workflow of github and this project represent my introdyctory session with github. 
